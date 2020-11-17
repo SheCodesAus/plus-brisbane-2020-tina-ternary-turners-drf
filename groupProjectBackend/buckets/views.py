@@ -8,7 +8,7 @@ from .models import Bucket, Pipe
 from .serializers import BucketSerializer, PipeSerializer,BucketDetailSerializer,PipeDetailSerializer
 from django.http import Http404
 from rest_framework import status, permissions
-from .permissions import IsOwnerOrReadOnly, IsSupporterOrReadOnly
+from .permissions import IsOwnerOrReadOnly, IsDestinationOrReadOnly
 
 class BucketList(APIView):
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -84,7 +84,7 @@ class PipeList(APIView):
         )
 
 class PipeDetailList(APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsSupporterOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,IsDestinationOrReadOnly]
 
     def get_object(self, pk):
         try:
