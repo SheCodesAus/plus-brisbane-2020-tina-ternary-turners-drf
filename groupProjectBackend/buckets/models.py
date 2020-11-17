@@ -20,8 +20,8 @@ class Bucket(models.Model):
     source_account_number = models.IntegerField()
     source_account_name = models.TextField()
     source_balance = models.IntegerField()
-    owner = models.CharField(max_length=200)
-    #owner = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,related_name='owner_buckets')
+    # owner = models.CharField(max_length=200)
+    owner = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,related_name='owner_buckets')
 
     def __str__(self):
         return self.title
@@ -35,14 +35,11 @@ class Pipe(models.Model):
     amount_dollar = models.IntegerField()
     amount_percent = models.IntegerField() 
     statement_text = models.CharField(max_length=200,default='Text')
-   
     bucket = models.ForeignKey(
     'Bucket',
     on_delete=models.CASCADE,
     related_name='pipes'
     )
-    # supporter = models.CharField(max_length=200)
-    #destination is like supporter
     destination = models.ForeignKey(
     get_user_model(),
     on_delete=models.CASCADE,
