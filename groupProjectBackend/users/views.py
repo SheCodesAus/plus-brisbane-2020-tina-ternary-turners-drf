@@ -10,7 +10,6 @@ from .permissions import IsSelfOrReadOnly
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 
-
 class CustomUserList(APIView):
     def get(self, request):
         users = CustomUser.objects.all()
@@ -75,3 +74,4 @@ class CustomAuthToken(ObtainAuthToken):
             'token': token.key,
             'user_id': user.pk,
         })
+
