@@ -108,5 +108,30 @@ class PipeDetailList(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+# this class is showing the accumulation of all pipes' amount
+class BucketProgress(APIView):
+    def get_object(self, pk):
+        try:
+            bucket = Bucket.objects.get(pk=pk)
+            self.check_object_permissions(self.request, bucket)
+            return bucket
 
+        except Bucket.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        bucket = self.get_object(pk)
+        serializer = BucketDetailSerializer(bucket)
+        # return Response(serializer.data)
+        progress_pipe = serializer.data
+        # return Response(progress_pledge["pledges"])
+        
+        print_progress = {}
+        print_progress["acc_amount_dollar"] = 0
+        print_progress["acc_amount_percent"] = 0
+        for i in range(len(progress_pipe["pipes"])):
+            print_progress["acc_amount_dollar"] += progress_pipe["pipes"][i]["amount_dollar"]
+            print_progress["acc_amount_percent"] += progress_pipe["pipes"][i]["amount_percent"]*progress_pipe["source_balance"]/100
+
+        return Response(print_progress)
 
