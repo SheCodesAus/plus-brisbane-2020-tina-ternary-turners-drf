@@ -7,5 +7,6 @@ path('buckets/', views.BucketList.as_view()),
 path('buckets/<int:pk>/', views.BucketDetail.as_view()),
 path('pipes/', views.PipeList.as_view()),
 path('pipes/<int:pk>/', views.PipeDetailList.as_view()),
+path('progress/<int:pk>/', views.BucketProgress.as_view())
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)
