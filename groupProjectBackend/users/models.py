@@ -7,10 +7,10 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
 class CustomUser(AbstractUser):
-    first_name = models.TextField(max_length=30, blank=True)
-    last_name = models.TextField(max_length=30, blank=True)
-    email = models.TextField(max_length=30, blank=True)
-    password = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=80, blank=True)
+    last_name = models.CharField(max_length=80, blank=True)
+    email = models.CharField(max_length=80, blank=True)
+    password = models.CharField(max_length=80)
    
     
     def __str__(self):
