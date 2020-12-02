@@ -108,6 +108,12 @@ class PipeDetailList(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+
+    def delete(self, request, pk):
+        pipe = self.get_object(pk)
+        data = request.data
+        pipe.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 # this class is showing the accumulation of all pipes' amount
 class BucketProgress(APIView):
     def get_object(self, pk):
