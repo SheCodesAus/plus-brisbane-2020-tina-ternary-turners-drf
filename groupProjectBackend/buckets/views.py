@@ -114,6 +114,7 @@ class PipeDetailList(APIView):
         data = request.data
         pipe.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+        
 # this class is showing the accumulation of all pipes' amount
 class BucketProgress(APIView):
     def get_object(self, pk):
