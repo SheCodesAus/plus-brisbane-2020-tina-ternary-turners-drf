@@ -28,7 +28,7 @@ class PipeDetailSerializer(PipeSerializer):
         instance.dest_account_number = validated_data.get('dest_account_number',instance.dest_account_number)
         instance.dest_bsb_number = validated_data.get('dest_bsb_number', instance.dest_bsb_number)
         instance.dest_account_name = validated_data.get('dest_account_name', instance.dest_account_name)
-        instance.dest_balance = validated_data.get('dest_account_balance', instance.dest_account_balance)
+        instance.dest_balance = validated_data.get('dest_balance', instance.dest_balance)
         instance.amount_dollar = validated_data.get('amount_dollar', instance.amount_dollar)
         instance.amount_percent = validated_data.get('amount_percent', instance.amount_percent)
         instance.statement_text = validated_data.get('statement_text',instance.statement_text)
